@@ -6,5 +6,6 @@ import com.packt.webstore.domain.Product;
 
 public interface ProductRepository {
 	public List<Product> getAllProducts();
+	public Product getProductById(String productID);
 
 }
