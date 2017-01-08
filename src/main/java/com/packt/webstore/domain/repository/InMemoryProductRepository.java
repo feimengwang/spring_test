@@ -12,25 +12,9 @@ import com.packt.webstore.domain.Product;
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
 	List<Product> productList = new ArrayList<Product>();
-	
-	public Product getProductById(String productId){
-		Product returnProduct = null;
-		if(StringUtils.isEmpty(productId)){
-			throw new IllegalArgumentException("No products found with the product id: "+ productId);
-		}
-		for (Product product : productList) {
-			if(product.getProductId().equals(productId)){
-				returnProduct = product;
-				break;
-			}
-		}
-		if(returnProduct ==null){
-			throw new IllegalArgumentException("No products found with the product id: "+ productId);
-		}
-		return returnProduct;
-	}
-	
-	public List<Product> getAllProducts() {
+
+	public InMemoryProductRepository() {
+		super();
 		Product iphone = new Product();
 		iphone.setCategory("mobile");
 		iphone.setProductId("P1234");
@@ -67,6 +51,27 @@ public class InMemoryProductRepository implements ProductRepository {
 		productList.add(iphone);
 		productList.add(nokia);
 		productList.add(mi);
+	}
+
+	public Product getProductById(String productId) {
+		Product returnProduct = null;
+		if (StringUtils.isEmpty(productId)) {
+			throw new IllegalArgumentException("No products found with the product id: " + productId);
+		}
+		for (Product product : productList) {
+			if (product.getProductId().equals(productId)) {
+				returnProduct = product;
+				break;
+			}
+		}
+		if (returnProduct == null) {
+			throw new IllegalArgumentException("No products found with the product id: " + productId);
+		}
+		return returnProduct;
+	}
+
+	public List<Product> getAllProducts() {
+
 		return productList;
 	}
 
