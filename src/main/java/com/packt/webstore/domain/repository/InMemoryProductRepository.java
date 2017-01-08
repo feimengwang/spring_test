@@ -33,7 +33,7 @@ public class InMemoryProductRepository implements ProductRepository {
 	public List<Product> getAllProducts() {
 		Product iphone = new Product();
 		iphone.setCategory("mobile");
-		iphone.setProductId("P12345");
+		iphone.setProductId("P1234");
 		iphone.setCondition("iphone condition");
 		iphone.setDescription("iphone 7");
 		iphone.setDiscontinued(true);
