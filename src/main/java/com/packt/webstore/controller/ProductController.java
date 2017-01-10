@@ -47,22 +47,31 @@ public class ProductController {
 	@RequestMapping("/filter/{ByCriteria}")
 	public String getProductsByFilter(Model model,
 			@MatrixVariable(pathVar = "ByCriteria") Map<String, List<String>> paramters) {
-		System.out.println("paramters"+paramters);
+		System.out.println("paramters" + paramters);
 		model.addAttribute("products", service.getProductsByFilter(paramters));
 		return "products";
 	}
+
 	@RequestMapping("/filter/{Bycategory}/{ByCriteria}")
 	public String getProductsByFilter2(Model model,
 			@MatrixVariable(pathVar = "Bycategory") Map<String, List<String>> category,
 			@MatrixVariable(pathVar = "ByCriteria") Map<String, List<String>> criteria) {
-		System.out.println("paramters="+category+"=;="+criteria);
-		//model.addAttribute("products", service.getProductsByFilter(paramters));
+		System.out.println("paramters=" + category + "=;=" + criteria);
+		// model.addAttribute("products",
+		// service.getProductsByFilter(paramters));
 		return "products";
 	}
-	
+
 	@RequestMapping("/product")
-	public String getProduct(Model model,@RequestParam String id){
-		
+	public String getProduct(Model model, @RequestParam String id) {
+		model.addAttribute("product", service.getProductById(id));
 		return "product";
+	}
+
+	@RequestMapping("/{category}/{price}")
+	public String getProductByManufacturer(@MatrixVariable(pathVar = "price") Map<String, String> price,
+			@PathVariable("category") String category, @RequestParam("manufacturer") String manufacturer,Model model) {
+			model.addAttribute("products", service.getProductsByManufacturerAndCategory(category, manufacturer, price));
+		return "products";
 	}
 }

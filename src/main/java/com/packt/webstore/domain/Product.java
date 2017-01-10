@@ -47,6 +47,7 @@ public class Product {
 		this.name = name;
 	}
 	public BigDecimal getUnitPrice() {
+		
 		return unitPrice;
 	}
 	public void setUnitPrice(BigDecimal unitPrice) {

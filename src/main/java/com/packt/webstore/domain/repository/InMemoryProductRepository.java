@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.print.attribute.standard.RequestingUserName;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -138,6 +140,26 @@ public class InMemoryProductRepository implements ProductRepository {
 		System.out.println(categoryProducts);
 
 		return categoryProducts;
+	}
+
+	public List<Product> getProductsByManufacturer(String manufacturer) {
+		List<Product> returnProduct = null;
+		if (StringUtils.isEmpty(manufacturer)) {
+			return productList;
+		}
+		for (Product product : productList) {
+			if (manufacturer.equalsIgnoreCase(product.getCategory())) {
+				if (returnProduct == null)
+					returnProduct = new ArrayList<Product>();
+				System.out.println("hhh="+product);
+				returnProduct.add(product);
+			}
+		}
+		if (returnProduct == null) {
+			throw new IllegalArgumentException("No products found with the manufacturer : " + manufacturer);
+		}
+		System.out.println("returnProduct="+returnProduct);
+		return returnProduct;
 	}
 
 }
