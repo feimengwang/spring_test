@@ -51,5 +51,10 @@ public class ProductServiceImpl implements ProductService {
 		return resultProducts;
 	}
 
+	public void addNewProduct(Product product) {
+		productRepository.addNewProduct(product);
+		
+	}
+
 	
 }
