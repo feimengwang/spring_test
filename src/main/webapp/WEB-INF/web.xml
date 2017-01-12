@@ -18,7 +18,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			/WEB-INF/spring/webcontext/security-context.xml
+			/WEB-INF/spring/webcontext/DispatcherServlet-context.xml,/WEB-INF/spring/webcontext/security-context.xml
 		</param-value>
 	</context-param>
 

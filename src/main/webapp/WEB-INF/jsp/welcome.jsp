@@ -15,5 +15,6 @@
 		</div>
 	</div>
 	</section>
+	<img alt="th" src="./resource/images/th.jpg">
 </body>
 </html>
