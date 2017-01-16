@@ -3,11 +3,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type"
-	content="text/html; charset=ISO-8859-
-1">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Products</title>
+	content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet"	href="<c:url value='/resource/css/main.css'/>">
+<title>Products--</title>
 </head>
 <body>
 	<section>
@@ -24,6 +22,7 @@
 			<c:forEach var="product" items="${products}">
 				<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
+					<img src='<c:url value="/resource/images/P1234.jpg"></c:url>' alt="image" style = "width:100%"/>
 						<div class="caption">
 							<h3>${product.name}</h3>
 							<p>${product.description}</p>

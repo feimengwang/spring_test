@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import com.packt.webstore.domain.Product;
+import com.packt.webstore.exception.ProductNotFoundException;
 
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
@@ -72,7 +73,7 @@ public class InMemoryProductRepository implements ProductRepository {
 	public Product getProductById(String productId) {
 		Product returnProduct = null;
 		if (StringUtils.isEmpty(productId)) {
-			throw new IllegalArgumentException("No products found with the product id: " + productId);
+			throw new ProductNotFoundException( productId);
 		}
 		for (Product product : productList) {
 			if (product.getProductId().equals(productId)) {
@@ -81,7 +82,7 @@ public class InMemoryProductRepository implements ProductRepository {
 			}
 		}
 		if (returnProduct == null) {
-			throw new IllegalArgumentException("No products found with the product id: " + productId);
+			 throw new ProductNotFoundException( productId);
 		}
 		return returnProduct;
 	}

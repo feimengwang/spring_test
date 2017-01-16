@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type"	content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link rel="stylesheet"	href="<c:url value='/resource/css/main.css'/>">
 <title>Products</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 		</div>
 	</section>
 	<section class="container">
-		<form:form modelAttribute="newProduct" class="form-horizontal">
+		<form:form modelAttribute="newProduct" class="form-horizontal" enctype="multipart/form-data">
 			<fieldset>
 				<legend>
 					<spring:message code="addProduct.form.productId.label" />
@@ -79,6 +79,12 @@
 						Old
 						<form:radiobutton path="condition" value="Refurbished" />
 						Refurbished
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="condition">Product Img</label>
+					<div class="col-lg-10">
+						<form:input id="productImg" path="productImg" class="form:input-large" type="file"/>
 					</div>
 				</div>
 				<div class="form-group">
