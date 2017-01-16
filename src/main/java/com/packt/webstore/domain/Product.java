@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.packt.webstore.velidator.ProductId;
+import com.packt.webstore.validator.ProductId;
 
 
 public class Product {

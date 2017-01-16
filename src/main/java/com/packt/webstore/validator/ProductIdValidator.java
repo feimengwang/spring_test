@@ -1,4 +1,4 @@
-package com.packt.webstore.velidator;
+package com.packt.webstore.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
