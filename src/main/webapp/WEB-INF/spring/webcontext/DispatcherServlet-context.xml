@@ -16,8 +16,14 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean class="com.packt.webstore.interceptor.PerformanceMonitorInterceptor" />
-		</mvc:interceptor>
 
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+				<property name="paramName" value="language" />
+			</bean>
+		</mvc:interceptor>
 	</mvc:interceptors>
 	<!-- <mvc:default-servlet-handler /> -->
 	<bean
@@ -33,5 +39,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10240000" />
 	</bean>
-
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
 </beans>
