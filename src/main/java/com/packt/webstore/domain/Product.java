@@ -2,12 +2,28 @@ package com.packt.webstore.domain;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.packt.webstore.velidator.ProductId;
 
 
 public class Product {
+	@Pattern(regexp="P[0-9]+" ,message="Only start with P")
+	@ProductId
 	private String productId;
+	@NotEmpty
+	@Size(min=4,max=20,message="4,20")
 	private String name;
+	@Min(value=0,message="min is 0")
+	@NotNull
+	@Digits(integer=8,fraction=2)
 	private BigDecimal unitPrice;
 	private String description;
 	private String manufacturer;

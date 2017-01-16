@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -111,7 +113,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewProduct(@ModelAttribute("newProduct") Product product, BindingResult result,
+	public String processAddNewProduct( @ModelAttribute("newProduct") @Valid Product product, BindingResult result,
 			HttpServletRequest request) {
 		if (result.getSuppressedFields().length > 0) {
 			throw new RuntimeException("Attempting to bind disallowed fields: "
@@ -136,7 +138,10 @@ public class ProductController {
 			}
 		}
 		service.addNewProduct(product);
-
+		System.out.println("result.hasErrors()="+result.hasErrors());
+		if(result.hasErrors()){
+			return "addProduct";
+		}
 		return "redirect:/products";
 	}
 }
