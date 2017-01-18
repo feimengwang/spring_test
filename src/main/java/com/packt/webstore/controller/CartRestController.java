@@ -89,7 +89,7 @@ public class CartRestController {
 	}
 
 	@ExceptionHandler(IllegalArgumentException.class)
-	@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Illegal			request, please verify your payload")
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Illegal request, please verify your payload")
 	public void handleClientErrors(Exception ex) {
 	}
 
