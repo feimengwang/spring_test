@@ -28,12 +28,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.exception.ProductNotFoundException;
 import com.packt.webstore.service.ProductService;
+import com.packt.webstore.validator.UnitsInStockValidator;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
 	@Autowired
 	private ProductService service;
+	@Autowired
+	private UnitsInStockValidator unitsInStockValidator;
 
 	@ExceptionHandler(ProductNotFoundException.class)
 	public ModelAndView HandError(HttpServletRequest req, ProductNotFoundException exception) {
@@ -48,6 +51,7 @@ public class ProductController {
 	@InitBinder
 	public void InitBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("unitsInStock", "unitsInOrder");
+		binder.addValidators(unitsInStockValidator);
 	}
 
 	@RequestMapping
@@ -67,7 +71,7 @@ public class ProductController {
 
 	@RequestMapping("/{category}")
 	public String getProductsByCategory(Model model, @PathVariable("category") String category) {
-		System.out.println("category="+category);
+		System.out.println("category=" + category);
 		model.addAttribute("products", service.getProdutsByCategory(category));
 
 		return "products";
@@ -113,7 +117,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewProduct( @ModelAttribute("newProduct") @Valid Product product, BindingResult result,
+	public String processAddNewProduct(@ModelAttribute("newProduct") @Valid Product product, BindingResult result,
 			HttpServletRequest request) {
 		if (result.getSuppressedFields().length > 0) {
 			throw new RuntimeException("Attempting to bind disallowed fields: "
@@ -138,8 +142,9 @@ public class ProductController {
 			}
 		}
 		service.addNewProduct(product);
-		System.out.println("result.hasErrors()="+result.hasErrors());
-		if(result.hasErrors()){
+		System.out.println("result.hasErrors()=" + result.hasErrors());
+		if (result.hasErrors()) {
+			System.out.println(result.getFieldErrors());
 			return "addProduct";
 		}
 		return "redirect:/products";

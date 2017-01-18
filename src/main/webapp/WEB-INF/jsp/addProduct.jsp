@@ -26,6 +26,7 @@
 	<section class="container">
 		<form:form modelAttribute="newProduct" class="form-horizontal"
 			enctype="multipart/form-data">
+			<form:errors />
 			<fieldset>
 				<legend>
 					<spring:message code="addProduct.form.productId.label" />
@@ -44,6 +45,7 @@
 					<div class="col-lg-10">
 						<form:input id="name" path="name" type="text"
 							class="form:input-large" />
+							<form:errors path="name" cssClass="text-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -51,6 +53,7 @@
 					<div class="col-lg-10">
 						<form:input id="unitPrice" path="unitPrice" type="text"
 							class="form:input-large" />
+							<form:errors path="unitsInStock" cssClass="text-danger"/>
 					</div>
 				</div>
 
